@@ -32,9 +32,6 @@ type MongoDocument<A extends keyof AllModels['mongo']> =
 /*
 // repo types
 */
-type AllLazyRepos = ReturnType<typeof import('../src/inits/init-repos').initLazyRepos>;
-type AllRepos = ReturnType<typeof import('./config-repos').configRepos>;
-type LazyRepoType<A extends keyof AllLazyRepos> = AllLazyRepos[A];
 type RepoType<A extends keyof AllRepos> = AllRepos[A];
 
 /*

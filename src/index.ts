@@ -1,7 +1,6 @@
 import { initModels } from './inits/init-models';
 import { pipe } from 'fp-ts/lib/function';
 import * as TE from 'fp-ts/TaskEither';
-import { configRepos } from '../configs/config-repos';
 import { initLazyRepos } from './inits/init-repos';
 import { initLazyServices } from './inits/init-services';
 import { configService } from '../configs/config-services';
@@ -17,7 +16,6 @@ import swaggerConfig from '../public/swagger.json';
 const configDomain = pipe(
   initModels(),
   TE.map(initLazyRepos),
-  TE.map(configRepos),
   TE.map(initLazyServices),
   TE.map(configService),
   TE.map(initLazyControllers),
