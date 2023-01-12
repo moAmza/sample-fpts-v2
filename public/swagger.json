@@ -32,6 +32,17 @@
 					}
 				},
 				"type": "object"
+			},
+			"BodyTypeOf_typeofauthDto.input.login_": {
+				"properties": {
+					"password": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					}
+				},
+				"type": "object"
 			}
 		},
 		"securitySchemes": {}
@@ -46,7 +57,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/": {
+		"/auth/register": {
 			"post": {
 				"operationId": "Register",
 				"responses": {
@@ -77,6 +88,33 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/BodyTypeOf_typeofauthDto.input.register_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BodyTypeOf_typeofauthDto.input.login_"
 							}
 						}
 					}

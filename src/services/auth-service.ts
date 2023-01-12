@@ -2,6 +2,7 @@ import { pipe } from 'fp-ts/lib/function';
 import * as TE from 'fp-ts/TaskEither';
 import { ERR } from '../errors/not-found-error';
 import { userDao } from '../repos/user-dao';
+import { checkExisting } from '../utils/check-existing';
 
 export const initAuthService =
   (userRepo: RepoType<'user'>) => (getService: GetServiceType<'user'>) => {
@@ -31,6 +32,17 @@ export const initAuthService =
         ),
       );
 
+    const validatePassword =
+      (password: string) =>
+      <A>(i: A & { password: Password }) =>
+        i.password === password ? TE.right(i) : TE.left(ERR.INVALID_PASSWORD_ERROR());
+
+    const generateJwt = <A>(i: A & { username: Username; email: Email }) => ({
+      __TAG: 'JWT',
+      email: i.email,
+      username: i.username,
+    });
+
     const register = (input: InRegisterUser) =>
       pipe(
         checkUsernameAvaialble(input),
@@ -39,7 +51,13 @@ export const initAuthService =
         TE.map(userDao.fullUser),
       );
 
-    return {
-      register,
-    };
+    const login = (input: InLoginUser) =>
+      pipe(
+        userRepo.getByUsername(input.username),
+        TE.chainW(checkExisting('Username')),
+        TE.chainW(validatePassword(input.password)),
+        TE.map(generateJwt),
+      );
+
+    return { register, login };
   };

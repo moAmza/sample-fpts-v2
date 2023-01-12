@@ -46,7 +46,7 @@ type MethodControllers = {
   put?: Controller;
   delete?: Controller;
 };
-type Api = { children?: { [field: string]: Api }; routes: MethodControllers };
+type Api = { children?: { [field: string]: Api }; routes?: MethodControllers };
 type Controller = (req: import('express').Request, ...args: any[]) => any;
 
 /*

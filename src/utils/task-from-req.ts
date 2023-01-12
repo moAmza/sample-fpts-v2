@@ -11,6 +11,8 @@ export const ReqTasks =
   }) =>
   <T extends A & B & C>() =>
     TE.tryCatch(async () => {
+      console.log(req.body);
+
       let body = validator.body ? await validator.body(req.body) : ({} as A);
       let query = validator.query ? await validator.query(req.query) : ({} as B);
       let params = validator.params ? await validator.params(req.params) : ({} as C);

@@ -35,4 +35,10 @@ export const ERR = {
     message: 'Email is duplicated',
     errorData: undefined,
   }),
+  INVALID_PASSWORD_ERROR: (): InvalidPasswordError => ({
+    errorType: 'INVALID_PASSWORD_ERROR',
+    statusCode: 400,
+    message: 'Your password is invalid',
+    errorData: undefined,
+  }),
 };

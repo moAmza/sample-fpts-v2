@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
+    "dev": "npm run swagger & nodemon ./src/index.ts",
     "swagger": "tsoa spec"
   },
   "devDependencies": {

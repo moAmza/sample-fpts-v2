@@ -4,7 +4,8 @@ type ErrorType =
   | 'DATABASE_IO_ERROR'
   | 'INVALID_INPUT_ERROR'
   | 'EMPTY_ENVIRONMENT_VARIABLES'
-  | 'DUPLICATE_EMAIL_ERROR';
+  | 'DUPLICATE_EMAIL_ERROR'
+  | 'INVALID_PASSWORD_ERROR';
 
 type BaseError = {
   statusCode: number;
@@ -46,4 +47,10 @@ interface DuplicateEmailError extends BaseError {
 interface EmptyEnvironmentVariables extends BaseError {
   errorType: 'EMPTY_ENVIRONMENT_VARIABLES';
   statusCode: 500;
+}
+
+interface InvalidPasswordError extends BaseError {
+  errorType: 'INVALID_PASSWORD_ERROR';
+  statusCode: 400;
+  errorData: undefined;
 }

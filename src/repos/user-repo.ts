@@ -10,8 +10,8 @@ type RegisterUserInput = {
 
 export const initUserRepo = (model: MongoModel<'user'>) => ({
   register: async (input: RegisterUserInput) => await model.create(input),
-  getByEmail: async (email: ValidEmail) => await model.findOne({ email }),
-  getByUsername: async (username: ValidUsername) => await model.findOne({ username }),
+  getByEmail: async (email: string) => await model.findOne({ email }),
+  getByUsername: async (username: string) => await model.findOne({ username }),
 });
 
 export const initPlayerRepo = (model: MongoModel<'user'>) => ({

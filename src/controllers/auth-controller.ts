@@ -6,11 +6,11 @@ import express from 'express';
 import { BodyTypeOf, handleRes } from '../utils/handle-res';
 import { ReqTasks } from '../utils/task-from-req';
 
-@Route('/')
+@Route('/auth')
 class AuthController {
   constructor(private authService: Service<'auth'>) {}
 
-  @Post('/')
+  @Post('/register')
   register(
     @Request() req: express.Request,
     @Body() body: BodyTypeOf<typeof authDto.input.register>,
@@ -19,6 +19,19 @@ class AuthController {
       ReqTasks(req)(authDto.input.register)<InRegisterUser>(),
       TE.chainW(this.authService.register),
       TE.map(authDto.output.status(true)),
+      handleRes(req.res),
+    );
+  }
+
+  @Post('/login')
+  login(
+    @Request() req: express.Request,
+    @Body() body: BodyTypeOf<typeof authDto.input.login>,
+  ) {
+    return pipe(
+      ReqTasks(req)(authDto.input.login)<InLoginUser>(),
+      TE.chainW(this.authService.login),
+      // TE.map(authDto.output.status(true)),
       handleRes(req.res),
     );
   }

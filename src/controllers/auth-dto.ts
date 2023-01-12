@@ -8,7 +8,7 @@ export const authDto = {
         username: z.string(),
         password: z.string(),
         email: z.string(),
-        birthday: z.date().transform((x) => new Date(x)),
+        birthday: z.string().transform((x) => new Date(x)),
         country: z.string(),
         firstname: z.string(),
         lastname: z.string(),
