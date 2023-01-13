@@ -1,9 +1,7 @@
 import { config } from 'dotenv';
-import { initEnvs } from '../src/inits/init-env';
 
-const configEnv = () => {
+export const configEnv = <A extends readonly string[]>(envs: A) => {
   config();
-  const envs = initEnvs();
   const envErrors: string[] = [];
   const configs = envs.reduce((prev, curr) => {
     const env: string | undefined = process.env[curr];
@@ -14,5 +12,3 @@ const configEnv = () => {
     throw Error(`\x1b[31m\nEMPTY ENVIRONMENT VARIABLES: \n  ${envErrors.join('\n  ')}`);
   return configs;
 };
-
-export const Configs = configEnv();

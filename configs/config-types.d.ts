@@ -9,9 +9,6 @@ type Right<TE extends import('fp-ts/TaskEither').TaskEither> =
 /*
 // service types
 */
-type AllLazyServices = ReturnType<
-  typeof import('../src/inits/init-services').initLazyServices
->;
 type AllServices = {
   [field in keyof AllLazyServices]: ReturnType<GetServiceType<field>>;
 };
@@ -50,7 +47,7 @@ type Controller = (req: import('express').Request, ...args: any[]) => any;
 //  controller types
 */
 type AllControllers = ReturnType<
-  typeof import('../src/inits/init-controllers').initLazyControllers
+  typeof import('../src/inits/init-controllers').initControllers
 >;
 
 type DtoType = {

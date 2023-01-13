@@ -5,6 +5,7 @@ import { authDto } from './auth-dto';
 import express from 'express';
 import { BodyTypeOf, handleRes } from '../utils/handle-res';
 import { ReqTasks } from '../utils/task-from-req';
+import { inspect } from '../utils/inspect';
 
 @Route('/auth')
 class AuthController {
@@ -15,10 +16,12 @@ class AuthController {
     @Request() req: express.Request,
     @Body() body: BodyTypeOf<typeof authDto.input.register>,
   ) {
+    console.log('ssss');
+
     return pipe(
       ReqTasks(req)(authDto.input.register)<InRegisterUser>(),
       TE.chainW(this.authService.register),
-      TE.map(authDto.output.status(true)),
+      // TE.map(authDto.output.status(true)),
       handleRes(req.res),
     );
   }

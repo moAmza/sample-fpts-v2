@@ -4,8 +4,17 @@ import { ERR } from '../errors/not-found-error';
 import { userDao } from '../repos/user-dao';
 import { checkExisting } from '../utils/check-existing';
 
+export const initPlayerService =
+  (userRepo: RepoType<'player'>) => (getService: GetServiceType<'auth'>) => {
+    const sss = () => {
+      return 'as' as 'as';
+    };
+
+    return { sss };
+  };
+
 export const initAuthService =
-  (userRepo: RepoType<'user'>) => (getService: GetServiceType<'user'>) => {
+  (userRepo: AllRepos['user']) => (getService: GetServiceType<'auth'>) => {
     const checkUsernameAvaialble = <A>(i: A & { username: ValidUsername }) =>
       pipe(
         userRepo.getByUsername(i.username),

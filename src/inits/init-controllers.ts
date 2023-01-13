@@ -1,6 +1,6 @@
 import { initAuthController } from '../controllers/auth-controller';
 
-export const initLazyControllers = (services: AllServices) => ({
+export const initControllers = (services: AllServices) => ({
   auth: initAuthController(services.auth),
-  user: initAuthController(services.user),
+  player: initAuthController(services.auth),
 });
