@@ -1,15 +1,18 @@
 import { configRoutes } from '../../configs/config-routes';
 
-export const initRoutes = (path: string) => (controllers: AllControllers) =>
-  configRoutes(path)({
+export const initRoutes = (controllers: AllControllers) =>
+  configRoutes('/')({
     children: {
       auth: {
         children: {
-          register: {
-            routes: { post: controllers.auth.register.bind(controllers.auth) },
+          signup: {
+            routes: { post: controllers.auth.signup.bind(controllers.auth) },
           },
           login: {
             routes: { post: controllers.auth.login.bind(controllers.auth) },
+          },
+          confirmation: {
+            routes: { post: controllers.auth.confirmation.bind(controllers.auth) },
           },
         },
       },

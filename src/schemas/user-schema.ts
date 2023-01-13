@@ -1,6 +1,7 @@
 import { Schema } from 'mongoose';
 
 export interface UserType {
+  _id: UserId;
   username: Username;
   password: Password;
   email: Email;

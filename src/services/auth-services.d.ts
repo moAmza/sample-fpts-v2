@@ -9,7 +9,7 @@ type InRegisterUser = {
 };
 
 type InConfirmRegister = {
-  email: string;
+  email: ValidEmail;
   code: number;
 };
 

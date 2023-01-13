@@ -41,4 +41,16 @@ export const ERR = {
     message: 'Your password is invalid',
     errorData: undefined,
   }),
+  EXPIRED_VERIFIER_ERROR: (): ExpiredVerifierError => ({
+    errorType: 'EXPIRED_VERIFIER_ERROR',
+    statusCode: 400,
+    message: 'Your verifier is expired',
+    errorData: undefined,
+  }),
+  INVALID_VERIFIER_CODE: (): InvalidVerifierCode => ({
+    errorType: 'INVALID_VERIFIER_CODE',
+    statusCode: 400,
+    message: 'This code is invalid.',
+    errorData: undefined,
+  }),
 };

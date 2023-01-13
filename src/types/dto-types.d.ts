@@ -1,4 +1,8 @@
 type Brand<A, key> = A & { __type: key };
+type MongoIdType = import('mongoose').Types.ObjectId;
+
+type UserId = Brand<MongoIdType, 'UserId'>;
+type VerifierId = Brand<MongoIdType, 'VerifierId'>;
 
 type Username = Brand<string, 'Username'>;
 type ValidUsername = Brand<string, 'ValidUsername'>;
@@ -22,3 +26,6 @@ type ValidFirstname = Brand<string, 'ValidFirstname'>;
 
 type Lastname = Brand<string, 'Lastname'>;
 type ValidLastname = Brand<string, 'ValidLastname'>;
+
+type VerifierCode = Brand<number, 'VerifierCode'>;
+type ValidVerifierCount = Brand<number, 'ValidVerifierCount'>;

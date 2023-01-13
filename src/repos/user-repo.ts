@@ -1,4 +1,4 @@
-type RegisterUserInput = {
+export type RegisterUserInput = {
   username: AvailableValidUsername;
   password: ValidPassword;
   email: AvailableValidEmail;

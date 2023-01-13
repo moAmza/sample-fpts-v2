@@ -43,6 +43,18 @@
 					}
 				},
 				"type": "object"
+			},
+			"BodyTypeOf_typeofauthDto.input.confirm_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"type": "object"
 			}
 		},
 		"securitySchemes": {}
@@ -57,25 +69,15 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/auth/register": {
+		"/auth/signup": {
 			"post": {
-				"operationId": "Register",
+				"operationId": "Signup",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {
-									"properties": {
-										"status": {
-											"type": "boolean"
-										}
-									},
-									"required": [
-										"status"
-									],
-									"type": "object"
-								}
+								"schema": {}
 							}
 						}
 					}
@@ -115,6 +117,33 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/BodyTypeOf_typeofauthDto.input.login_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/confirmation": {
+			"post": {
+				"operationId": "Confirmation",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BodyTypeOf_typeofauthDto.input.confirm_"
 							}
 						}
 					}

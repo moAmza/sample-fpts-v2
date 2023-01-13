@@ -24,7 +24,7 @@ export const authDto = {
 
     confirm: {
       body: validate({
-        email: z.string().email(),
+        email: z.string(),
         code: z.number(),
       }),
     },

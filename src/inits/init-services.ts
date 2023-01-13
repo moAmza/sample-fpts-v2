@@ -1,7 +1,8 @@
-import { configLazyServices, configServices } from '../../configs/config-services';
-import { initAuthService, initPlayerService } from '../services/auth-service';
+import { configLazyServices } from '../../configs/config-services';
+import { initAuthService } from '../services/auth-service';
+import { initUserService } from '../services/user-service';
 
 export const initLazyServices = configLazyServices((repos: AllRepos) => ({
-  auth: () => initAuthService(repos.user),
-  player: () => initPlayerService(repos.player),
+  auth: () => initAuthService(repos.user, repos.verifier),
+  user: () => initUserService(repos.user),
 }));

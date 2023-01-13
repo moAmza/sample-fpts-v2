@@ -5,7 +5,9 @@ type ErrorType =
   | 'INVALID_INPUT_ERROR'
   | 'EMPTY_ENVIRONMENT_VARIABLES'
   | 'DUPLICATE_EMAIL_ERROR'
-  | 'INVALID_PASSWORD_ERROR';
+  | 'INVALID_PASSWORD_ERROR'
+  | 'EXPIRED_VERIFIER_ERROR'
+  | 'INVALID_VERIFIER_CODE';
 
 type BaseError = {
   statusCode: number;
@@ -51,6 +53,16 @@ interface EmptyEnvironmentVariables extends BaseError {
 
 interface InvalidPasswordError extends BaseError {
   errorType: 'INVALID_PASSWORD_ERROR';
+  statusCode: 400;
+  errorData: undefined;
+}
+interface ExpiredVerifierError extends BaseError {
+  errorType: 'EXPIRED_VERIFIER_ERROR';
+  statusCode: 400;
+  errorData: undefined;
+}
+interface InvalidVerifierCode extends BaseError {
+  errorType: 'INVALID_VERIFIER_CODE';
   statusCode: 400;
   errorData: undefined;
 }

@@ -11,13 +11,11 @@ import { inspect } from '../utils/inspect';
 class AuthController {
   constructor(private authService: Service<'auth'>) {}
 
-  @Post('/register')
-  register(
+  @Post('/signup')
+  signup(
     @Request() req: express.Request,
     @Body() body: BodyTypeOf<typeof authDto.input.register>,
   ) {
-    console.log('ssss');
-
     return pipe(
       ReqTasks(req)(authDto.input.register)<InRegisterUser>(),
       TE.chainW(this.authService.register),
@@ -35,6 +33,18 @@ class AuthController {
       ReqTasks(req)(authDto.input.login)<InLoginUser>(),
       TE.chainW(this.authService.login),
       // TE.map(authDto.output.status(true)),
+      handleRes(req.res),
+    );
+  }
+
+  @Post('/confirmation')
+  confirmation(
+    @Request() req: express.Request,
+    @Body() body: BodyTypeOf<typeof authDto.input.confirm>,
+  ) {
+    return pipe(
+      ReqTasks(req)(authDto.input.confirm)<InConfirmRegister>(),
+      TE.chainW(this.authService.confirm),
       handleRes(req.res),
     );
   }
