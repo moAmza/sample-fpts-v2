@@ -53,4 +53,10 @@ export const ERR = {
     message: 'This code is invalid.',
     errorData: undefined,
   }),
+  INVALID_OBJECTID_ERROR: (): InvalidObjectIdError => ({
+    errorType: 'INVALID_OBJECTID_ERROR',
+    statusCode: 400,
+    message: 'ObjectId is invalid.',
+    errorData: undefined,
+  }),
 };

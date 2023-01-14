@@ -1,6 +1,8 @@
 type Brand<A, key> = A & { __type: key };
 type MongoIdType = import('mongoose').Types.ObjectId;
 
+type ValidMongoId = Brand<string, 'ValidMongoId'>;
+
 type UserId = Brand<MongoIdType, 'UserId'>;
 type VerifierId = Brand<MongoIdType, 'VerifierId'>;
 

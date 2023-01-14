@@ -1,17 +1,18 @@
 import { z } from 'zod';
 import { validate } from '../utils/validate';
 
-export const authDto = {
+export const userDto = {
   input: {
-    register: {
-      body: validate({
-        username: z.string(),
-        password: z.string(),
-        email: z.string(),
-        birthday: z.string().transform((x) => new Date(x)),
-        country: z.string(),
-        firstname: z.string(),
-        lastname: z.string(),
+    getAll: {
+      query: validate({
+        page: z.string().default('1').transform(Number),
+        num: z.string().default('10').transform(Number),
+        search: z.string().default(''),
+      }),
+    },
+    getOne: {
+      params: validate({
+        userId: z.string().default(''),
       }),
     },
 

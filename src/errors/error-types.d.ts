@@ -7,7 +7,8 @@ type ErrorType =
   | 'DUPLICATE_EMAIL_ERROR'
   | 'INVALID_PASSWORD_ERROR'
   | 'EXPIRED_VERIFIER_ERROR'
-  | 'INVALID_VERIFIER_CODE';
+  | 'INVALID_VERIFIER_CODE'
+  | 'INVALID_OBJECTID_ERROR';
 
 type BaseError = {
   statusCode: number;
@@ -63,6 +64,12 @@ interface ExpiredVerifierError extends BaseError {
 }
 interface InvalidVerifierCode extends BaseError {
   errorType: 'INVALID_VERIFIER_CODE';
+  statusCode: 400;
+  errorData: undefined;
+}
+
+interface InvalidObjectIdError extends BaseError {
+  errorType: 'INVALID_OBJECTID_ERROR';
   statusCode: 400;
   errorData: undefined;
 }

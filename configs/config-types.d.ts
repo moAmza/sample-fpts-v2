@@ -5,6 +5,8 @@ type ExpressReq = import('express').Request;
 */
 type Right<TE extends import('fp-ts/TaskEither').TaskEither> =
   TE extends import('fp-ts/TaskEither').TaskEither<E, infer R> ? R : never;
+type Left<TE extends import('fp-ts/TaskEither').TaskEither> =
+  TE extends import('fp-ts/TaskEither').TaskEither<infer E, R> ? E : never;
 
 /*
 // service types
@@ -25,6 +27,7 @@ type MongoDocument<A extends keyof AllModels['mongo']> =
   AllModels['mongo'][A] extends import('mongoose').Model<infer B, any, any, any>
     ? B & { _id: import('mongoose').Types.ObjectId }
     : never;
+type PaginatedType<T> = { count?: number; values: T[] };
 
 /*
 // repo types

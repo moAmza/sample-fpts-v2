@@ -13,4 +13,8 @@ export const userDao = {
     username: a.username,
     email: a.email,
   }),
+  paginated: (a: PaginatedType<MongoDocument<'user'>>) => ({
+    count: a.count ?? 0,
+    values: a.values.map(userDao.shortUser),
+  }),
 };

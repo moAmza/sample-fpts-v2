@@ -9,8 +9,7 @@ import { Envs } from '../inits/init-env';
 import { inspect } from '../utils/inspect';
 
 export const initAuthService =
-  (userRepo: RepoType<'user'>, verifierRepo: RepoType<'verifier'>) =>
-  (getService: GetServiceType<'auth'>) => {
+  (userRepo: RepoType<'user'>, verifierRepo: RepoType<'verifier'>) => () => {
     const checkUsernameAvaialble = <A>(i: A & { username: ValidUsername }) =>
       pipe(
         userRepo.getByUsername(i.username),
@@ -110,5 +109,5 @@ export const initAuthService =
         TE.map(userDao.fullUser),
       );
 
-    return { register: preRegister, login, confirm: confirmAndRegister };
+    return { preRegister, login, confirmAndRegister };
   };
